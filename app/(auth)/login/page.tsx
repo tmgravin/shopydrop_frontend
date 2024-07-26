@@ -63,7 +63,7 @@ const Login = () => {
                 <span>Login with Google</span>
               </Button>
               <div className="flex gap-2">
-                <p>Don't have an account?</p>
+                <p>Don&apos;t have an account?</p>
                 <Link href="/register" className="text-green-600">
                   Sign Up
                 </Link>
