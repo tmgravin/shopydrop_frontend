@@ -6,8 +6,9 @@ import { OfferCard } from "./component/content/OfferCard";
 import { Service } from "./component/content/Service";
 import { Store } from "./component/content/Store";
 import { VendorCard } from "./component/content/vendorCard";
+import { NextPage } from "next";
 
-export const Home = () => {
+export const Home: NextPage = () => {
   return (
     <div className="w-full">
       <aside>
