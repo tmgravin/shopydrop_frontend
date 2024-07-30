@@ -17,8 +17,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import { NextPage } from "next";
 
-export const Home = () => {
+export const Home: NextPage = () => {
   return (
     <div className="w-full">
       <div className="bg-green-500 w-full mt-5">
