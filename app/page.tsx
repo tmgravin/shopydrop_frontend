@@ -6,19 +6,21 @@ import { OfferCard } from "./component/content/OfferCard";
 import { Service } from "./component/content/Service";
 import { Store } from "./component/content/Store";
 import { VendorCard } from "./component/content/vendorCard";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 
 export const Home = () => {
   return (
     <div className="w-full">
-      <aside>
-        <div>
-          <h1 className="text-black font-2xl ml-[305px] absolute top-20">
-            {" "}
-            This is Homepage
-          </h1>
-        </div>
-      </aside>
-
       <div className="bg-green-500 w-full mt-5">
         <Container>
           {/*This is homepage Banner Component  */}

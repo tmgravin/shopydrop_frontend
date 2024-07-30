@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,6 +15,10 @@ import { IoLocationSharp } from "react-icons/io5";
 import { CiMobile2 } from "react-icons/ci";
 import axios from "axios";
 
+interface SignupProps {
+  onClose: () => void;
+}
+
 interface FormData {
   username: string;
   address: string;
@@ -23,8 +27,8 @@ interface FormData {
   password: string;
 }
 
-const Register = () => {
-  const [data, setData] = React.useState<FormData>({
+const Register: React.FC<SignupProps> = ({ onClose }) => {
+  const [data, setData] = useState<FormData>({
     username: "",
     address: "",
     phone: "",
@@ -51,101 +55,91 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Register</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[520px] bg-white">
-          <DialogHeader>
-            <DialogTitle>Sign Up</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={onSubmit} className="flex flex-col gap-y-8 py-4">
-            <div className="relative">
-              <Input
-                type="text"
-                name="username"
-                placeholder="Username"
-                className="pr-10"
-                value={data.username}
-                onChange={handleChange}
-              />
-              <FaUser className="absolute right-3 top-3 text-gray-400" />
-            </div>
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder="Address"
-                name="address"
-                className="pr-10"
-                value={data.address}
-                onChange={handleChange}
-              />
-              <IoLocationSharp className="absolute right-3 top-3 text-gray-400" />
-            </div>
-            <div className="relative">
-              <Input
-                type="number"
-                name="phone"
-                placeholder="Phone Number"
-                className="pr-10"
-                value={data.phone}
-                onChange={handleChange}
-              />
-              <CiMobile2 className="absolute right-3 top-3 text-gray-400" />
-            </div>
-            <div className="relative">
-              <Input
-                type="email"
-                placeholder="Email"
-                className="pr-10"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-              />
-              <FaEnvelope className="absolute right-3 top-3 text-gray-400" />
-            </div>
-            <div className="relative">
-              <Input
-                type="password"
-                placeholder="Password"
-                className="pr-10"
-                name="password"
-                value={data.password}
-                onChange={handleChange}
-              />
-              <FaLock className="absolute right-3 top-3 text-gray-400" />
-            </div>
-            <div className="flex gap-1 items-center">
-              <Input
-                type="checkbox"
-                className="w-8 h-4"
-                name="terms"
-                required
-              />
-              <p>I have read and accept the</p>
-              <Link href="/terms" className="text-green-600">
-                Terms and Privacy Policy
+    <Dialog open={true} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[520px] bg-white">
+        <DialogHeader>
+          <DialogTitle>Sign Up</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={onSubmit} className="flex flex-col gap-y-8 py-4">
+          <div className="relative">
+            <Input
+              type="text"
+              name="username"
+              placeholder="Username"
+              className="pr-10"
+              value={data.username}
+              onChange={handleChange}
+            />
+            <FaUser className="absolute right-3 top-3 text-gray-400" />
+          </div>
+          <div className="relative">
+            <Input
+              type="text"
+              placeholder="Address"
+              name="address"
+              className="pr-10"
+              value={data.address}
+              onChange={handleChange}
+            />
+            <IoLocationSharp className="absolute right-3 top-3 text-gray-400" />
+          </div>
+          <div className="relative">
+            <Input
+              type="number"
+              name="phone"
+              placeholder="Phone Number"
+              className="pr-10"
+              value={data.phone}
+              onChange={handleChange}
+            />
+            <CiMobile2 className="absolute right-3 top-3 text-gray-400" />
+          </div>
+          <div className="relative">
+            <Input
+              type="email"
+              placeholder="Email"
+              className="pr-10"
+              name="email"
+              value={data.email}
+              onChange={handleChange}
+            />
+            <FaEnvelope className="absolute right-3 top-3 text-gray-400" />
+          </div>
+          <div className="relative">
+            <Input
+              type="password"
+              placeholder="Password"
+              className="pr-10"
+              name="password"
+              value={data.password}
+              onChange={handleChange}
+            />
+            <FaLock className="absolute right-3 top-3 text-gray-400" />
+          </div>
+          <div className="flex gap-1 items-center">
+            <Input type="checkbox" className="w-8 h-4" name="terms" required />
+            <p>I have read and accept the</p>
+            <Link href="/terms" className="text-green-600">
+              Terms and Privacy Policy
+            </Link>
+          </div>
+          <div className="flex flex-col items-center text-center gap-y-4">
+            <Button
+              type="submit"
+              className="bg-green-500 text-white font-semibold w-full"
+            >
+              Register
+            </Button>
+            <div className="flex gap-2">
+              <p>Already have an account?</p>
+              <Link href="/login" className="text-green-600">
+                Sign in
               </Link>
             </div>
-            <div className="flex flex-col items-center text-center gap-y-4">
-              <Button
-                type="submit"
-                className="bg-green-500 text-white font-semibold w-full"
-              >
-                Register
-              </Button>
-              <div className="flex gap-2">
-                <p>Already have an account?</p>
-                <Link href="/login" className="text-green-600">
-                  Sign in
-                </Link>
-              </div>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </div>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };
 
