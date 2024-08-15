@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 
+
 export const Footer = () => {
   return (
     <footer
@@ -63,7 +64,7 @@ export const Footer = () => {
           </FooterList>
           <FooterList>
             <h3 className="font-bold font-base"> Company</h3>
-            <Link href="#">About Us</Link>
+            <Link href="/about">About Us</Link>
             <Link href="#">Contact Us</Link>
             <Link href="#">Our Team</Link>
           </FooterList>

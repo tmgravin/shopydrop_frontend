@@ -2,6 +2,7 @@ import { CiHome } from "react-icons/ci";
 import { SidebarButton } from "./sidebar-button";
 import { SidebarItems } from "@/lib/types";
 
+
 interface NavbarProps {
   sidebarItems: SidebarItems; // Corrected the property name
 }

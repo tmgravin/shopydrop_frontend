@@ -13,12 +13,12 @@ export const products = [
       {
         color: "White",
         colorCode: "#FFFFFF",
-        image: "https://m.media-amazon.com/images/I/71p-tHQ0u1L._AC_SX679_.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrPVI2X2jdm_i5YFHY_fYjb8PO6fpZGUEKwg&s",
       },
       {
         color: "Gray",
         colorCode: "#808080",
-        image: "https://m.media-amazon.com/images/I/417tEj3iJ8L._AC_.jpg",
+        image: "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
     ],
     reviews: [],
@@ -37,7 +37,7 @@ export const products = [
         color: "Black",
         colorCode: "#000000",
         image:
-          "https://m.media-amazon.com/images/I/71gOLg2-kqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
     ],
     reviews: [
@@ -54,7 +54,7 @@ export const products = [
           email: "example@gmail.com",
           emailVerified: null,
           image:
-            "https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
+            "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
           hashedPassword: null,
           createdAt: "2023-05-30T08:08:53.979Z",
           updatedAt: "2023-05-30T08:08:53.979Z",
@@ -76,18 +76,18 @@ export const products = [
       {
         color: "Black",
         colorCode: "#000000",
-        image: "https://m.media-amazon.com/images/I/61g+McQpg7L._AC_SX679_.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrPVI2X2jdm_i5YFHY_fYjb8PO6fpZGUEKwg&s",
       },
       {
         color: "Blue",
         colorCode: " #0000FF",
-        image: "https://m.media-amazon.com/images/I/713Om9vCHUL._AC_SX679_.jpg",
+        image: "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
       {
         color: "Red",
         colorCode: "#FF0000",
         image:
-          "https://m.media-amazon.com/images/I/61thdjmfHcL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
     ],
     reviews: [
@@ -105,7 +105,7 @@ export const products = [
           email: "example1@gmail.com",
           emailVerified: null,
           image:
-            "https://lh3.googleusercontent.com/a/AAcHTtcuRLwWi1vPKaQOcJlUurlhRAIIq2LgYccE8p32=s96-c",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrPVI2X2jdm_i5YFHY_fYjb8PO6fpZGUEKwg&s",
           hashedPassword: null,
           createdAt: "2023-06-26T15:40:52.558Z",
           updatedAt: "2023-06-26T15:40:52.558Z",
@@ -125,7 +125,7 @@ export const products = [
           email: "example@gmail.com",
           emailVerified: null,
           image:
-            "https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
+            "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
           hashedPassword: null,
           createdAt: "2023-05-30T08:08:53.979Z",
           updatedAt: "2023-05-30T08:08:53.979Z",
@@ -136,9 +136,9 @@ export const products = [
   },
   {
     id: "64a4e9e77e7299078334019f",
-    name: "Logitech MX Master 2S Wireless Mouse – Use on Any Surface, Hyper-Fast Scrolling, Ergonomic Shape, Rechargeable, Control Upto 3 Apple Mac and Windows Computers, Graphite",
+    name: "Logitech MX Master 2S Wireless Mouse – Use on Any Surface, Hyper-Fast S",
     description:
-      "Cross computer control: Game changing capacity to navigate seamlessly on 3 computers, and copy paste text, images, and files from 1 to the other using Logitech flow\nDual connectivity: Use with upto 3 Windows or Mac computers via included Unifying receiver or Bluetooth Smart wireless technology. Gesture button- Yes",
+      "Cross computer control: Game changing capacity to s",
     price: 70,
     brand: "logitech",
     category: "Accesories",
@@ -148,7 +148,7 @@ export const products = [
         color: "Graphite",
         colorCode: " #383838",
         image:
-          "https://m.media-amazon.com/images/I/61ni3t1ryQL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
     ],
     reviews: [],
@@ -157,7 +157,7 @@ export const products = [
     id: "649d775128b6744f0f497040",
     name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
     description:
-      'Bluetooth Call and Message Reminder: The smart watch is equipped with HD speaker, after connecting to your phone via Bluetooth, you can directly use the smartwatches to answer or make calls, read messages, store contacts, view call history. The smartwatch can set up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
     price: 50,
     brand: "Nerunsa",
     category: "Watch",
@@ -167,13 +167,13 @@ export const products = [
         color: "Black",
         colorCode: "#000000",
         image:
-          "https://m.media-amazon.com/images/I/71s4mjiit3L.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
       {
         color: "Silver",
         colorCode: "#C0C0C0",
         image:
-          "https://m.media-amazon.com/images/I/71zbWSRMaYL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
       },
     ],
     reviews: [],

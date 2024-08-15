@@ -1,4 +1,6 @@
+"use client";
 import * as React from "react";
+import { useRouter } from 'next/navigation'; // Updated for newer versions
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -7,7 +9,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { TiArrowSortedDown } from "react-icons/ti";
 
 const getRandomImage = () => {
   // Placeholder image service URL (for demo purposes)
@@ -17,6 +18,12 @@ const getRandomImage = () => {
 };
 
 export function Store() {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push('/vendorstore');
+  };
+
   return (
     <Carousel className="w-full shadow-none gap-0 mt-8">
       <CarouselContent className="w-full -ml-1 shadow-none gap-0 ">
@@ -26,7 +33,10 @@ export function Store() {
             className="pl-1 basis-1/4 md:basis-1/12 lg:basis-1/16"
           >
             <div className="p-1 h-full">
-              <Card className="bg-transparent border-none bg-green-300 ">
+              <Card
+                className="bg-transparent border-none bg-green-300 cursor-pointer"
+                onClick={handleCardClick}
+              >
                 <CardContent className="flex aspect-square items-center justify-center p-0 shadow-none">
                   <img
                     src={getRandomImage()}

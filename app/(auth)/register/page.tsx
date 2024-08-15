@@ -64,8 +64,8 @@ const Register: React.FC<SignupProps> = ({ onClose }) => {
           <div className="relative">
             <Input
               type="text"
-              name="username"
-              placeholder="Username"
+              name="Name"
+              placeholder="name"
               className="pr-10"
               value={data.username}
               onChange={handleChange}
