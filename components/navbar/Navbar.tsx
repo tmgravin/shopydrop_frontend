@@ -3,31 +3,38 @@
 import { useState, useRef, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { AiOutlineThunderbolt } from "react-icons/ai";
-import { Container } from "./../Container";
+import { Container } from "../../app/component/Container";
 import Login from "@/app/(auth)/login/page";
 import Register from "@/app/(auth)/register/page";
 import { CiSearch } from "react-icons/ci";
-import HomeSidebar from './../../Layout/home-sidebar'; // Adjust the path as needed
+import HomeSidebar from "../../app/Layout/home-sidebar"; // Adjust the path as needed
 import Link from "next/link";
 import { BsTelephoneInboundFill } from "react-icons/bs";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
-import { getCookie } from "@/app/utils/token"; // Assuming you have a getCookie function to get the token
+import { getCookie } from "@/app/utils/token"; // Import deleteCookie as well
+import { deleteCookie } from '../../app/utils/cookies';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import CartCount from "./CartCount";
+import CartProvider from "@/app/providers/CartProvider";
 
-export const Navbar = () => {
-  const [isLoginOpen, setIsLoginOpen] = useState<any>(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState<any>(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
-  const sidebarRef = useRef(null);
 
-  useEffect(() => {
-    // Check if token exists in the cookies to determine login status
-    const token = getCookie("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+
+ const Navbar = () => {
+  const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // Track login status
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+
+ useEffect(()=>{
+  const token =getCookie('token');
+  if(token){
+    setIsLoggedIn(true);
+  }else{
+    setIsLoggedIn(false);
+  }
+ },[])
 
   const handleLoginOpen = () => {
     setIsLoginOpen(true);
@@ -45,14 +52,18 @@ export const Navbar = () => {
     setIsSignUpOpen(false);
   };
 
-  const handleSidebarToggle = () => {
+  const handleSidebarToggle :any= () => {
     setIsSidebarOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {// Remove the token cookie on logout
+    setIsLoggedIn(false); // Update state to reflect that user is logged out
   };
 
   // Close the sidebar if a click is detected outside of it
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
         setIsSidebarOpen(false);
       }
     };
@@ -79,7 +90,9 @@ export const Navbar = () => {
                 onClick={handleSidebarToggle}
               />
               <div className="items-center text-center mx-auto">
-                <Link href="/"><h1 className="font-bold text-3xl cursor-pointer">Logo</h1></Link>  
+                <Link href="/">
+                  <h1 className="font-bold text-3xl cursor-pointer">Logo</h1>
+                </Link>
               </div>
             </div>
 
@@ -131,13 +144,18 @@ export const Navbar = () => {
                   </div>
                   <div className="w-[1px] h-[40px] bg-white"></div>
                   <div>
-                    <CiShoppingCart className="font-bold" size={28} />
+                    <CartProvider>
+                    <CartCount/>
+                    </CartProvider>
+                    
                   </div>
                   <div className="flex gap-3 items-center text-center">
                     <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">
                       <CiUser size={24} className="text-white" />
                     </div>
-                    <h1 className="text-xl">LogOut</h1>
+                    <button onClick={handleLogout} className="text-xl">
+                      LogOut
+                    </button>
                   </div>
                 </div>
               )}
@@ -155,8 +173,8 @@ export const Navbar = () => {
         </div>
       )}
 
-      {isLoginOpen && <Login onClose={handleLoginClose} />}
-      {isSignUpOpen && <Register onClose={handleSignUpClose} />}
+      {isLoginOpen ? <Login isOpen={isLoginOpen}  onClosed={handleLoginClose} />: null}
+      {isSignUpOpen ? <Register isOpen={isSignUpOpen} onClose={handleSignUpClose } />: null}
     </div>
   );
 };

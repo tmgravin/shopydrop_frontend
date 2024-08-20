@@ -1,4 +1,4 @@
-import { ProductCard } from "../component/products/productCard";
+import { ProductCard } from "../../components/products/productCard";
 import { products } from "../utils/products";
 
 const SavedProduct = () => {

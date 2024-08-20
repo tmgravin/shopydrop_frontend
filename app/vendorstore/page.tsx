@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { CiHome } from "react-icons/ci";
 import { products } from "../utils/products";
 import { SidebarItems } from "@/lib/types";
-import { ProductCard } from "../component/products/productCard";
+import { ProductCard } from "../../components/products/productCard";
 import { PiArrowCounterClockwiseBold } from "react-icons/pi";
 import { CiBookmark } from "react-icons/ci";
 import { MdFormatListBulleted } from "react-icons/md";

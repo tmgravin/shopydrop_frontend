@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,6 @@ import axios from "axios";
 
 interface SignupProps {
   onClose: () => void;
-  isOpen:boolean;
 }
 
 interface FormData {
@@ -28,7 +28,7 @@ interface FormData {
   password: string;
 }
 
-const Register = ({ onClose,isOpen }: SignupProps) => {
+const Register = ({}: SignupProps) => {
   const [data, setData] = useState<FormData>({
     username: "",
     address: "",
@@ -44,7 +44,6 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
       [name]: value,
     }));
   };
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -56,7 +55,7 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={true} onOpenChange={}>
       <DialogContent className="sm:max-w-[520px] bg-white">
         <DialogHeader>
           <DialogTitle>Sign Up</DialogTitle>

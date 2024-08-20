@@ -112,3 +112,23 @@ main {
 .adminUserBg {
   background: #a6e4bf;
 }
+
+/* Global styles (e.g., globals.css) or module CSS file */
+.sidebar-scrollbar {
+  scrollbar-width:  thin; /* For Firefox */
+  scrollbar-color: #cbd5e1 #f1f5f9; /* For Firefox */
+}
+
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 8px; /* For Chrome, Safari, and Edge */
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f5f9;
+}
+

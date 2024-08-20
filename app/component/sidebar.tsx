@@ -10,7 +10,7 @@ const Sidebar = () => {
     pathname === path ? 'text-blue-500' : 'text-black';
 
   return (
-    <div className="relative left-0 bg-gray-100 h-screen w-[20%]  items-center text-center  p-4 shadow-lg">
+    <div className="relative left-0screen w-[20%]  items-center text-center  p-4 shadow-lg">
       <h2 className="text-lg font-semibold mb-6">Manage My Account</h2>
       <ul className="space-y-4">
         <li>

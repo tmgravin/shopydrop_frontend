@@ -1,12 +1,11 @@
-// ProductCard.tsx
-
-import { useState, useCallback } from 'react';
-import debounce from 'lodash/debounce';
+"use client";
 
 import { FormatPrice } from "@/app/utils/formatPrice";
+import { products } from "@/app/utils/products";
 import { truncateText } from "@/app/utils/truncateText";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Rating } from '@mui/material';
 import { TiEye } from "react-icons/ti";
 import { FaHeart } from "react-icons/fa";
@@ -23,16 +22,11 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
+  const [count, setCount] = useState<number>(0);
   const [savedProducts, setSavedProducts] = useState<string[]>([]);
-  const router = useRouter();
-  const { handleAdProductToCart } = useCart();
 
-  const debouncedAddToCart = useCallback(
-    debounce(() => {
-      handleAdProductToCart(data);
-    }, 300), // Adjust debounce time as needed
-    [data, handleAdProductToCart]
-  );
+  const router = useRouter();
+  const { cartProducts, handleRemoveProductFromCart, handleCartQtyIncrease, handleCartQtyDecrease } = useCart();
 
   const handleSaveProduct = (productId: string) => {
     setSavedProducts((prevSavedProducts) => {
@@ -45,7 +39,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   };
 
   return (
-    <div className="relative col-span-1 cursor-pointer border-b-[1px] border border-slate-200 rounded-sm p-2 transition hover:scale-105 text-sm group">
+    <div
+      className="relative col-span-1 cursor-pointer border-b-[1px] border border-slate-200 rounded-sm p-2 transition hover:scale-105 text-sm group"
+    >
       <div className="absolute top-12 right-0 z-40 opacity-0 group-hover:opacity-100 transition-opacity">
         <TiEye onClick={() => router.push(`/product/${data.id}`)} className="text-black hover:text-blue-500" size={36} />
       </div>
@@ -65,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             className="w-full h-full object-contain"
           />
         </div>
-        <div>
+        <div className="">
           <p className="font-bold">
             {truncateText(data.name)}
           </p>
@@ -88,12 +84,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           </div>
         </div>
         <div className="flex mx-auto justify-center items-center mt-4">
-          <Button
-            className="bg-white text-green-600 border border-black w-[200px] hover:bg-black"
-            onClick={debouncedAddToCart}
-          >
-            Add To Cart
-          </Button>
+          <Button className="bg-white text-green-600 border border-black w-[200px] hover:bg-black">Add To Cart</Button>
         </div>
       </div>
     </div>

@@ -12,7 +12,9 @@ export const getCookie = (name: string): string | null => {
     return null;
   };
   
-  // Example usage
+  // user cookies data
   const token = getCookie('token');
   console.log('Retrieved Token:', token);
+  
+  
   

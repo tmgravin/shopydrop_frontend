@@ -3,8 +3,8 @@ import React, { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SidebarItems } from "@/lib/types";
 import { CiHome } from "react-icons/ci"; // Import your icon
-import { Navbar } from "../../component/navbar/Navbar";
-import SidebarNavbar from "../../component/navbar/SidebarNavbar";
+import  Navbar  from "../../../components/navbar/Navbar";
+import SidebarNavbar from "../../../components/navbar/SidebarNavbar";
 import UserNavbar from "../admin/user/UserNavbar";
 import UserSidebar from "../admin/user/UserSidebar";
 import Footer from "../../component/footer/Footer";

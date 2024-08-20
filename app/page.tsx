@@ -22,7 +22,7 @@ export const Home = () => {
       try {
         const response = await axios.get(`${apiUrl}api/auth/users/`, {
           headers: {
-            "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAZ21haWwuY29tIiwiaWF0IjoxNzIzNjMyMzEzfQ.wEylNIRrIsjBC5biTWMMS2_1fiM01VxU7xB2Gl2F9CA`,
+            "Authorization": `Bearer ` + sessionStorage.getItem("user"),
             "Content-Type": "application/json"
           },
           withCredentials: true

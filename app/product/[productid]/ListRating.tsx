@@ -1,6 +1,6 @@
 "use client";
 
-import Heading from "@/app/component/products/Heading";
+import Heading from "@/components/products/Heading";
 import { Rating } from '@mui/material';
 import { FaRegThumbsUp } from "react-icons/fa";
 import { RiThumbDownLine } from "react-icons/ri";

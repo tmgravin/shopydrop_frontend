@@ -1,4 +1,6 @@
+
 "use client";
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,67 +12,54 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FaEnvelope, FaLock, FaFacebook, FaGoogle } from "react-icons/fa";
-import ResetPassword from "@/app/(auth)/resetpassword/page";
 import axios from "axios";
-import { getCookie } from "@/app/utils/token";
 import toast from "react-hot-toast";
-import { headers } from "next/headers";
-
+import { useRouter } from "next/navigation";
+import { setCookie } from "@/app/utils/cookies"; // Utility function for setting cookies
 
 interface LoginProps {
-  onClose: () => any;
+  onClosed?: () => void;
+  isOpen:boolean
 }
 
-const Login: React.FC<LoginProps> = ({ onClose }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showResetPassword, setShowResetPassword] = useState(false);
-
-  const handleResetPasswordOpen = () => {
-    setShowResetPassword(true);
-  };
-
-  const handleResetPasswordClose = () => {
-    setShowResetPassword(false);
-  };
+const Login : React.FC<LoginProps>= ({ onClosed,isOpen }) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/security/login`;
-    console.log(apiUrl, "API URL");
-  
     try {
       const response = await axios.post(apiUrl, { email, password }, {
         headers: {
           "Content-Type": "application/json",
-          "Accept-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
         },
         withCredentials: true
-      }
-      );
-      console.log("Login successful:", response.data);
-      const { token } = response.data; // Assuming the token is returned in the 'token' field
+      });
+      const res = response.data;
+      console.log("here ", res);
+      sessionStorage.setItem("user", res.jwtToken);
 
-      // Store JWT in a cookie
-      document.cookie = `token=${token}; Path=/; Secure; HttpOnly; SameSite=Strict`;
-      toast.success("Login successful");
-      const tokena = getCookie('token');
-      // Handle successful login (e.g., redirect or close dialog)
+      if (res.user.userType === "USER") {
+        setCookie("token", res.jwtToken, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
+      } else if (res.user.userType === "VENDOR") {
+        setCookie("token", res.jwtToken, { path: "/dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
+      } else if (res.user.userType === "ADMIN") {
+        setCookie("token", res.jwtToken, { path: "/admin-dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
+      }
+      setCookie("user", res.user, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
+      onClosed() && onClosed();
+      router.push("/");
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Error logging in:", error);
       toast.error("Login failed");
-      // Handle error (e.g., show error message)
     }
   };
-  
 
   return (
-    <Dialog open={true} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onClosed} > 
       <DialogContent className="sm:max-w-[520px] bg-white">
         <DialogHeader>
           <DialogTitle>Welcome To ShopyDrop</DialogTitle>
@@ -106,7 +95,6 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
             <div className="flex gap-1 items-center">
               <p>Forgot Password?</p>
               <Link
-                onClick={handleResetPasswordOpen}
                 href="/resetpassword"
                 className="text-green-600"
               >
@@ -116,7 +104,7 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
           </div>
           <div className="flex flex-col items-center gap-y-4">
             <Button type="submit" className="bg-green-500 text-white font-semibold w-full">
-              Sign In 
+              Sign In
             </Button>
             <div className="flex items-center gap-4">
               <hr className="flex-grow text-black" />
@@ -134,7 +122,7 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
             <div className="flex gap-2">
               <p>Don't have an account?</p>
               <Link href="/register" className="text-green-600">
-                Sign In
+                Sign Up
               </Link>
             </div>
           </div>
@@ -145,3 +133,4 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
 };
 
 export default Login;
+

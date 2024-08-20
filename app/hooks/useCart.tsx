@@ -3,9 +3,11 @@
 import { createContext, useState, useContext, useCallback, useEffect } from "react";
 import { cartProductType } from "../product/[productid]/productDetails";
 import { toast } from "react-hot-toast";
+import { access } from "fs";
 
 type CartContextType = {
     cartTotalQty: number;
+    CartTotalAmount:number;
     cartProducts: cartProductType[] | null;
     handleAdProductToCart: (product: cartProductType) => void;
     handleRemoveProductFromCart: (productId: string) => void;
@@ -21,14 +23,40 @@ interface Props {
 
 export const CartContextProvider = (props: Props) => {
     const [cartTotalQty, setCartTotalQty] = useState(0);
+    const [cartTotalAmount, setCartTotalAmount] = useState(0);
     const [cartProducts, setCartProducts] = useState<cartProductType[] | null>(null);
 
+console.log('qty',cartTotalQty)
+console.log('cartTotalAmount',cartTotalAmount)
     useEffect(() => {
         const cart = localStorage.getItem('cart');
         if (cart) {
             setCartProducts(JSON.parse(cart));
         }
     }, []);
+    // add make here to calculate total
+    useEffect(() => {
+        const getTotals = () => {
+            if (cartProducts) {
+                const { total, qty } = cartProducts.reduce(
+                    (acc, item) => {
+                        const itemTotal = item.price * item.quantity;
+                        acc.total += itemTotal;
+                        acc.qty += item.quantity;
+                        return acc;
+                    },
+                    { total: 0, qty: 0 }
+                );
+                setCartTotalQty(qty);
+                setCartTotalAmount(total);
+                // Update total quantity state
+                // If you need to store or use the total price, you can do so here
+                // For example: setCartTotalPrice(total);
+            }
+        };
+        getTotals();
+    }, [cartProducts]);
+    // finish here
 
     const handleAdProductToCart = useCallback((product: cartProductType) => {
         console.log('handleAdProductToCart called'); // Debugging line
@@ -103,6 +131,7 @@ export const CartContextProvider = (props: Props) => {
 
     const value = {
         cartTotalQty,
+        cartTotalAmount,
         cartProducts,
         handleAdProductToCart,
         handleRemoveProductFromCart,

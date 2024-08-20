@@ -92,7 +92,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <img src={cartProduct.selectedImg.image} alt={product.name} className="w-auto h-72 mx-[30%]" />
         )}
         <div className="flex gap-2 mt-4">
-          {product.images.map((img, index) => (
+          {product.images.map((img:any, index:any) => (
             <img
               key={index}
               src={img.image}
