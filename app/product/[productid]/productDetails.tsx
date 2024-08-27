@@ -9,6 +9,8 @@ import { useCart } from "@/app/hooks/useCart";
 import { useRouter } from "next/navigation";
 import Cart from './../../cart/page';
 import { product } from './../../utils/product';
+import Image from "next/image";
+
 import Link from "next/link";
 interface ProductDetailsProps {
   product: any;
@@ -89,13 +91,19 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     <div className="grid space-between gap-8 grid-cols-1 md:grid-cols-2 mt-12 mb-10">
       <div className="mt-10"> 
         {product.images && product.images.length > 0 && (
-          <img src={cartProduct.selectedImg.image} alt={product.name} className="w-auto h-72 mx-[30%]" />
+          <Image src={cartProduct.selectedImg.image} alt={product.name}
+          width={500}
+          height={500}
+          className="w-auto h-72 mx-[30%]" />
+
         )}
         <div className="flex gap-2 mt-4">
           {product.images.map((img:any, index:any) => (
-            <img
+            <Image
               key={index}
               src={img.image}
+              width={200}
+              height={200}
               alt={product.name}
               className="w-28 h-28 cursor-pointer"
               onClick={() => handleColorSelect(img)}

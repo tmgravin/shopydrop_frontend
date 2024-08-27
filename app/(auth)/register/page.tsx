@@ -55,6 +55,9 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
     }
   };
 
+
+  
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[520px] bg-white">

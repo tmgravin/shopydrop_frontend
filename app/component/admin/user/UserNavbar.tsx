@@ -67,6 +67,8 @@ const UserNavbar = ({ toggleSidebar }: UserNavbarProps) => {
                         alt="User Photo"
                         fill
                         className="rounded-full"
+                        width={100}
+                        height={100}
                       />
                     </div>
                     <div className="hidden 2xl:block">

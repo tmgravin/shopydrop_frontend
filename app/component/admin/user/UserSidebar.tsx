@@ -27,7 +27,11 @@ const UserSidebar = () => {
         <div className="flex flex-col gap-5 py-3 border-b borderColor px-4">
           <div className="flex bg-green-600 items-center gap-3 py-3 px-3 rounded-xl">
             <div className="relative h-10 w-10">
-              <Image src={"/logo.svg"} alt="Logo" fill />
+              <Image src={"/logo.svg"}
+              
+              alt="Logo"
+    
+              fill />
             </div>
             <h1 className="text-3xl font-bold text-white  ">ShofyDrop</h1>
           </div>

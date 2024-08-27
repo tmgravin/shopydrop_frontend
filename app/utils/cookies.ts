@@ -8,7 +8,7 @@ export const setCookie = (name: string, value: string, options: { [key: string]:
       }
     }
     document.cookie = cookieString;
-  };
+  };  
   
   export const getCookie = (name: string): string | undefined => {
     const cookies = document.cookie.split('; ').reduce((acc: { [key: string]: string }, cookie) => {

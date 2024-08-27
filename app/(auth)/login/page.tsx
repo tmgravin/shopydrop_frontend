@@ -12,14 +12,15 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FaEnvelope, FaLock, FaFacebook, FaGoogle } from "react-icons/fa";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { setCookie } from "@/app/utils/cookies"; // Utility function for setting cookies
+import { axiosInstance } from "@/app/utils/api";
 
 interface LoginProps {
-  onClosed?: () => void;
-  isOpen:boolean
+  // onClosed: () => void;
+  onClosed: never;
+  isOpen:never
 }
 
 const Login : React.FC<LoginProps>= ({ onClosed,isOpen }) => {
@@ -30,28 +31,28 @@ const Login : React.FC<LoginProps>= ({ onClosed,isOpen }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/security/login`;
     try {
-      const response = await axios.post(apiUrl, { email, password }, {
+      axiosInstance.post('security/login', { email, password }, {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true
-      });
-      const res = response.data;
-      console.log("here ", res);
-      sessionStorage.setItem("user", res.jwtToken);
-
-      if (res.user.userType === "USER") {
-        setCookie("token", res.jwtToken, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
-      } else if (res.user.userType === "VENDOR") {
-        setCookie("token", res.jwtToken, { path: "/dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
-      } else if (res.user.userType === "ADMIN") {
-        setCookie("token", res.jwtToken, { path: "/admin-dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
-      }
-      setCookie("user", res.user, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
-      onClosed() && onClosed();
-      router.push("/");
+        // withCredentials: true
+      }).then((response) => {
+        console.log('response for data is',response);
+        sessionStorage.setItem("token", response.data.jwtToken);
+        console.log("token ", sessionStorage.getItem("token"));
+        if (response.data.user.userType === "USER") {
+          setCookie("token", response.data.jwtToken, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
+        } else if (response.data.user.userType === "VENDOR") {
+          setCookie("token", response.data.jwtToken, { path: "/dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
+        } else if (response.data.user.userType === "ADMIN") {
+          setCookie("token", response.data.jwtToken, { path: "/admin-dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
+        }
+        setCookie("user", response.data.user, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
+        onClosed!();
+        router.push("/");
+        window.location.reload();
+      })
     } catch (error) {
       console.error("Error logging in:", error);
       toast.error("Login failed");
@@ -120,7 +121,7 @@ const Login : React.FC<LoginProps>= ({ onClosed,isOpen }) => {
               <span>Login with Google</span>
             </Button>
             <div className="flex gap-2">
-              <p>Don't have an account?</p>
+              <p>Don &apos;t have an account?</p>
               <Link href="/register" className="text-green-600">
                 Sign Up
               </Link>

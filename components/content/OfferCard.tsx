@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Card } from "@/components/ui/card";
 
+import Image from "next/image";
+
 // Static data
 const offerCardData = [
   {
@@ -49,7 +51,7 @@ export function OfferCard({ className, ...props }: { className?: string }) {
       {offerCardData.map((offer, index) => (
         <Card
           key={index}
-          className={cn("w-[359px] h-[348px] mt-6", className)}
+          className={cn("w-full h-[348px] mt-6", className)}
           {...props}
         >
           <div className="ml-4 space-y-2">
@@ -61,8 +63,10 @@ export function OfferCard({ className, ...props }: { className?: string }) {
             </Button>
           </div>
           <div>
-            <img
+            <Image
               className="overflow-hidden h-28 w-full object-cover mt-9"
+              width={100}
+              height={150}
               src={offer.imageUrl}
               alt={offer.altText}
             />

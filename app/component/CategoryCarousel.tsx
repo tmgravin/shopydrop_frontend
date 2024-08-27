@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -7,6 +8,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
+
 import { TiArrowSortedDown } from "react-icons/ti";
 
 const getRandomImage = () => {
@@ -17,31 +20,44 @@ const getRandomImage = () => {
 };
 
 export function CategoryCarousel() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const carousel = carouselRef.current as unknown as { next: () => void };
+        carousel.next();
+      }
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval); // Clean up interval on component unmount
+  }, []);
+
   return (
-    <Carousel className="w-full shadow-none gap-0">
-      <CarouselContent className="w-full -ml-1 shadow-none gap-0 ">
+    <Carousel ref={carouselRef} className="w-full shadow-none gap-0">
+      <CarouselContent className="w-full flex gap-2">
         {Array.from({ length: 20 }).map((_, index) => (
           <CarouselItem
             key={index}
-            className="pl-1 basis-1/4 md:basis-1/12 lg:basis-1/16 shadow-none"
+            className="flex-none p-1 w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36"
           >
-            <div className="p-1 h-full shadow-none">
-              <Card className="bg-transparent border-none shadow-none">
-                <CardContent className="flex aspect-square items-center justify-center p-0 shadow-none">
-                  <img
-                    src={getRandomImage()}
-                    alt={`Product ${index + 1}`}
-                    className="h-12 w-20"
-                  />
-                </CardContent>
-                <div className="flex items-center text-center justify-end">
-                  <p className="text-center text-sm mx-auto">Product</p>
-                  <p className="mx-auto">
-                    <TiArrowSortedDown size={16} />
-                  </p>
-                </div>
-              </Card>
-            </div>
+            <Card className="bg-transparent border-none shadow-none">
+              <CardContent className="flex aspect-square items-center justify-center p-0 shadow-none">
+                <Image
+                  src={getRandomImage()}
+                  width={80}
+                  height={80}
+                  alt={`Product ${index + 1}`}
+                  className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 rounded-full"
+                />
+              </CardContent>
+              <div className="flex items-center text-center justify-between mt-1">
+                <p className="text-center text-xs sm:text-sm mx-auto">
+                  Category Name
+                </p>
+                <TiArrowSortedDown size={14} />
+              </div>
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>

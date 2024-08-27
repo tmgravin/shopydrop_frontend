@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Layout from '../accountLayout';
-import Modal from './../../component/modal/modal';
-
+import Modal from '@/components/modal/modal';
 interface Props {
   email: string;
   name: string;

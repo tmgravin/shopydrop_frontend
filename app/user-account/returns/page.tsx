@@ -1,5 +1,6 @@
 "use client";
 import AccountLayout from '../accountLayout';
+import Image from "next/image";
 
 const ProductReturn = () => {
   // Static return data
@@ -26,17 +27,17 @@ const ProductReturn = () => {
         },
       ],
     },
-    {
-      id: '13579',
-      status: 'Completed',
-      items: [
-        {
-          name: 'Headphones',
-          reason: 'Damaged packaging',
-          imageUrl: 'https://www.merokirana.com/archive/KiranaProduct/81bsNnbi2gL._SL1500_bd844e2f-54c8-4ac4-8ca1-338289ceb639.jpg', // Replace with a Google image URL
-        },
-      ],
-    },
+    // {
+    //   id: '13579',
+    //   status: 'Completed',
+    //   items: [
+    //     {
+    //       name: 'Headphones',
+    //       reason: 'Damaged packaging',
+    //       imageUrl: 'https://www.merokirana.com/archive/KiranaProduct/81bsNnbi2gL._SL1500_bd844e2f-54c8-4ac4-8ca1-338289ceb639.jpg', // Replace with a Google image URL
+    //     },
+    //   ],
+   
   ];
 
   return (
@@ -52,10 +53,12 @@ const ProductReturn = () => {
                 <ul className="mt-2 space-y-2">
                   {ret.items.map((item, index) => (
                     <li key={index} className="flex justify-between items-center">
-                      <img 
+                      <Image 
                         src={item.imageUrl} 
                         alt={item.name} 
                         className="mr-2 w-16 h-16 rounded"
+                        width={64}
+                        height={64}
                       />
                       <span>{item.name}</span>
                       <span>{item.reason}</span>

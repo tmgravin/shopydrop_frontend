@@ -2,8 +2,8 @@ import React from "react";
 
 export const HomeBanner = () => {
   return (
-    <div className="w-full">
-      <div className="relative min-h-[225px] w-full text-black">
+    <div className="w-full relative">
+      <div className="relative min-h-[10px] w-full text-black">
         <div className="container mx-auto px-4 py-4 flex flex-col lg:flex-row gap-4 items-center text-center lg:text-left">
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start">
             <p className="text-2xl md:text-3xl lg:text-4xl text-white mb-2">

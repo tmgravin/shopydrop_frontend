@@ -3,8 +3,9 @@ import Link from "next/link";
 import { useCart } from "../hooks/useCart";
 import { MdArrowBack } from "react-icons/md";
 import SetQuantity from "../product/[productid]/setQuantity";
+import Image from "next/image";
 import { cartProductType } from "../product/[productid]/productDetails";
-
+import { useRouter } from "next/navigation";
 const CartClient = () => {
     const { cartProducts, handleRemoveProductFromCart, handleCartQtyIncrease, handleCartQtyDecrease } = useCart();
 
@@ -17,7 +18,9 @@ const CartClient = () => {
             <div className="mb-4">
                 {cartProducts && cartProducts.map((item: cartProductType, index: number) => (
                     <div key={index} className="flex items-center mb-4">
-                        <img src={item.selectedImg.image} alt={item.name} className="w-16 h-16" />
+                        <Image
+                        width={10}
+                        height={100} src={item.selectedImg.image} alt={item.name} className="w-16 h-16" />
                         <div className="flex-1 ml-4">
                             <h3 className="font-semibold">{item.name}</h3>
                             <p className="text-sm text-green-500">
@@ -40,7 +43,7 @@ const CartClient = () => {
                     </div>
                 ))}
             </div>
-            <button className="w-full bg-green-500 text-white py-2 rounded">Place an order</button>
+            <button  onClick={() => router.push('/checkout')} className="w-full bg-green-500 text-white py-2 rounded ">Checkout</button>
         </div>
     );
 }

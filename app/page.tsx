@@ -3,45 +3,57 @@
 import { CategoryCarousel } from "./component/CategoryCarousel";
 import Container from "./component/Container";
 import { HomeBanner } from "./component/HomeBanner";
-import { AdvertiseBannner } from "./component/content/AdvertiseBannner";
+import { AdvertiseBannner } from "../components/content/AdvertiseBannner";
 import { Button } from "@/components/ui/button";
-import { OfferCard } from "./component/content/OfferCard";
-import { Service } from "./component/content/Service";
-import { Store } from "./component/content/Store";
-import { VendorCard } from "./component/content/vendorCard";
+import { OfferCard } from "../components/content/OfferCard";
+import { Service } from "../components/content/Service";
+import { Store } from "../components/content/Store";
+import { VendorCard } from "../components/content/vendorCard";
 import axios from "axios";
 import { useEffect } from "react";
 import { getCookie } from "./utils/token";
+import ProductCarousel from "@/components/ProductCarousel";
+import Slider from './../components/slider/slider';
+
 const token = getCookie('token');
-
 export const Home = () => {
-  const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/`;
-
+  const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${apiUrl}api/auth/users/`, {
+        console.log("token ", sessionStorage.getItem("token"))
+        const response = await axios.get(`${apiUrl}auth/users/`, {
+
           headers: {
-            "Authorization": `Bearer ` + sessionStorage.getItem("user"),
-            "Content-Type": "application/json"
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+        "Content-Type": "application/json"
           },
           withCredentials: true
-        });
-        console.log(response.data);
-      } catch (error) {
+        }).then(response=>{
+          console.log(response.data);
+        })  
+      }catch (error) {
         console.log(error);
       }
     };
-
     fetchData();
   }, [apiUrl]);
+  
+  // const productImages = [
+  //   // Specify width and height
+  //   { src: '/next.svg', alt: 'Product 2', width: 100, height: 100 }, // Specify width and height
+  //   { src: '/user.png', alt: 'Product 3', width: 100, height: 100 }, // Specify width and height
+  // ];s
 
   return (
     <div className="w-full">
       <div className="bg-green-500 w-full mt-5">
         <Container>
           {/* This is homepage Banner Component */}
+    
           <HomeBanner />
+          <Slider/>
+          {/* <ProductCarousel images={productImages}/> */}
         </Container>
       </div>
       <div className="p-8">

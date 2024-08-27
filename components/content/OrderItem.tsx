@@ -1,5 +1,6 @@
 import React from 'react';
 import { Order } from '../utils/userData';
+import Image from "next/image";
 
 interface Props {
   order: Order;
@@ -8,7 +9,7 @@ interface Props {
 const OrderItem: React.FC<Props> = ({ order }) => {
   return (
     <div className="border p-4 rounded-lg mb-4 flex">
-      <img src={order.image} alt={order.title} className="w-24 h-24 object-cover rounded-md" />
+      <Image src={order.image} alt={order.title} className="w-24 h-24 object-cover rounded-md" />
       <div className="ml-4 flex-1">
         <h3 className="font-bold text-lg">{order.title}</h3>
         <p className={`text-sm ${order.orderPlaced ? 'text-green-600' : 'text-red-600'}`}>

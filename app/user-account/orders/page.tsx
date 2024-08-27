@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import AccountLayout from '../accountLayout';
+import Image from "next/image";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 export default function OrdersPage() {
@@ -84,10 +85,12 @@ export default function OrdersPage() {
                   <ul className="mt-2 space-y-2">
                     {order.items.map((item, index) => (
                       <li key={index} className="flex justify-between items-center">
-                        <img 
+                        <Image 
                           src={item.imageUrl} 
                           alt={item.name} 
                           className="mr-2 w-16 h-16 rounded"
+                          width={64}
+                          height={64}
                         />
                         <span>{item.name}</span>
                         <span>${item.price.toFixed(2)}</span>

@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 // Static data
 const vendorCardData = [
@@ -54,14 +55,16 @@ export function VendorCard({ className, ...props }: { className?: string }) {
       {vendorCardData.map((vendor, index) => (
         <Card
           key={index}
-          className={cn("relative w-[331px] h-[183.8px] mt-5", className)}
+          className={cn("relative w-full h-[183.8px] mt-5", className)}
           {...props}
         >
           <div className="bg-green-600 rounded-full w-12 h-12 ml-2 mt-2">
-            <img
+            <Image
               className="object-cover rounded-full h-12 w-12 left-0 items-start text-start"
               src={vendor.logoUrl}
               alt={vendor.storeName}
+              width={100}
+              height={100}
             />
           </div>
           <div className="flex justify-between">
@@ -73,10 +76,12 @@ export function VendorCard({ className, ...props }: { className?: string }) {
               </Button>
             </div>
           </div>
-          <img
+          <Image
             className="absolute bottom-0 right-0 w-[141px] h-[138.8px] object-cover"
             src={vendor.imageUrl}
             alt={vendor.altText}
+            width={141}
+            height={138.8}
           />
         </Card>
       ))}

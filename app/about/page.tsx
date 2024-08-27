@@ -2,6 +2,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { FaCheckCircle, FaShippingFast, FaTag } from "react-icons/fa";
 import { MdOutlineSecurity } from "react-icons/md";
 import { Container } from './../component/Container';
+import Image from "next/image";
 
 const About:React.FC = () => {
   return (
@@ -9,11 +10,14 @@ const About:React.FC = () => {
     <div className="flex flex-col items-center justify-center">
       {/* Our Story Section */}
       <section className="w-full text-center my-12 px-4">
-        <img src="https://png.pngtree.com/thumb_back/fh260/back_pic/02/50/63/71577e1cf59d802.jpg" alt="Our Story Image"  className="mx-auto h-72 w-full" />
+        <Image 
+        width={100}
+        height={100}
+        src="https://png.pngtree.com/thumb_back/fh260/back_pic/02/50/63/71577e1cf59d802.jpg" alt="Our Story Image"  className="mx-auto h-72 w-full" />
         <div className="mt-8">
           <h2 className="text-4xl font-bold">Our Story</h2>
           <p className="text-gray-600 mt-4 leading-relaxed max-w-3xl mx-auto">
-            Launched in 2024, ShopfyDrop is South Asia's premier online shopping marketplace with an active presence in Online Store
+            Launched in 2024, ShopfyDrop is South Asia premier online shopping marketplace with an active presence in Online Store
           </p>
         </div>
       </section>

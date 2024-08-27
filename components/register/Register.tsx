@@ -47,7 +47,8 @@ const Register = ({}: SignupProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://192.168.1.71:8080/api/users/", data);
+      // const res = await axios.post("http://192.168.1.71:8080/api/users/", data);
+      const res = await axiosInstance.post("/users/", data);
       console.log(res);
     } catch (error) {
       console.error("Error during registration:", error);
