@@ -28,7 +28,7 @@ const Slider: React.FC = () => {
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       autoplay={{
-        delay: 3000, // Time in milliseconds between slide transitions
+        delay: 1000, // Time in milliseconds between slide transitions
         disableOnInteraction: false, // Keep autoplay running after user interactions
       }}
       breakpoints={{
