@@ -103,7 +103,7 @@ const UpdateImages = () => {
               <div className="relative  h-80 w-full ">
                 <Image
                   src={displayImage || "/placeholder.png"}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                   alt="Featured Image"
                   className="border-2 p-5 rounded-xl "
                   fill

@@ -244,7 +244,7 @@ const EditProduct = ({ params }: PageProps) => {
                       src={`${product?.images[index].image}`}
                       alt={""}
                       fill
-                      objectFit="contain"
+                      style={{ objectFit: "contain" }}
                       className="p-5 border-2 hover:bg-secondary rounded-xl duration-200 "
                     />
                     <button className="absolute top-2 right-2 bg-primary rounded-full p-2 text-white z-10 hover:bg-red-700 hover:text-white">
@@ -266,7 +266,7 @@ const EditProduct = ({ params }: PageProps) => {
                       src={src}
                       alt={`Uploaded ${index}`}
                       fill
-                      objectFit="contain"
+                      style={{ objectFit: "contain" }}
                       className="p-5 border-2 hover:bg-secondary rounded-xl duration-200 "
                     />
                     <button

@@ -88,7 +88,7 @@ const columns: ColumnDef<Product>[] = [
             alt={` Product ${row.original.id}`}
             width={50}
             height={50}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
             className="rounded-xl "
           />
         </div>

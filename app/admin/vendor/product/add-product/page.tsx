@@ -37,6 +37,7 @@ import { IoSearch } from "react-icons/io5";
 import Container from "@/app/component/Container";
 import { useSidebar } from "@/components/SidebarProvider";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const AddProduct = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar();
@@ -45,7 +46,11 @@ const AddProduct = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
 
+  //Contains URLs of the files/images
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
+  //Contains files to append for backend
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [thumbnail, setThumbnail] = useState<string>("");
 
@@ -64,22 +69,38 @@ const AddProduct = () => {
     const files = event.target.files;
     if (files) {
       const newImageSrcs: string[] = [];
+      const newSelectedFiles: File[] = [];
       Array.from(files).forEach((file) => {
+        if (!file.type.startsWith("image/")) {
+          alert("Only image files are allowed");
+          return;
+        }
+
+        // Add the file to the newSelectedFiles array
+        newSelectedFiles.push(file);
+
         const reader = new FileReader();
         reader.onload = (e) => {
           if (e.target?.result) {
             newImageSrcs.push(e.target.result as string);
           }
+
           // Update the state after reading all files
           if (newImageSrcs.length === files.length) {
             setImageSrcs((prevImageSrcs) => {
               const updatedImageSrcs = [...prevImageSrcs, ...newImageSrcs];
+
               // Set the thumbnail to the first image if it's not seen yet
               if (!thumbnail) {
                 setThumbnail(updatedImageSrcs[0]);
               }
               return updatedImageSrcs;
             });
+            // Update the selectedFiles state after processing all files
+            setSelectedFiles((prevFiles) => [
+              ...prevFiles,
+              ...newSelectedFiles,
+            ]);
           }
         };
         reader.readAsDataURL(file);
@@ -115,20 +136,40 @@ const AddProduct = () => {
 
       return updatedImageSrcs;
     });
+    // Update selectedFiles
+    setSelectedFiles((prevSelectedFiles) => {
+      // Remove the actual file at the given index
+      return prevSelectedFiles.filter((_, i) => i !== index);
+    });
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     const formData = new FormData();
 
     if (data.files && data.files.length > 0) {
-      for (const files of data.files) {
-        formData.append("files[]", files);
+      for (const files of selectedFiles) {
+        formData.append("files", files);
       }
     }
     formData.append("name", data.name);
     formData.append("category", data.category);
     formData.append("brand", data.brand);
     formData.append("description", data.description);
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api`,
+        formData,
+        {
+          headers: {
+            Authorization: `bearer `,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+    } catch (err) {
+      console.log("Post Error", err);
+    }
 
     console.log(formData);
   };
@@ -160,6 +201,7 @@ const AddProduct = () => {
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <Card className="flex flex-col gap-5">
+                {/* Input for Product Name */}
                 <div>
                   <Label className="text-base sm:text-lg font-semibold">
                     Product Name
@@ -174,6 +216,7 @@ const AddProduct = () => {
                     Do not exceed 20 characters when entering the product name.{" "}
                   </p>
                 </div>
+                {/* Select Option for Category */}
                 <div className="flex flex-col gap-2">
                   <Label className=" text-base sm:text-lg font-semibold">
                     Category
@@ -195,6 +238,7 @@ const AddProduct = () => {
                     </SelectContent>
                   </Select>
                 </div>
+                {/* Select Option for Brand */}
                 <div className="grid gap-2">
                   <Label className="text-lg font-semibold">Brand</Label>
                   <Select onValueChange={(value) => setValue("brand", value)}>
@@ -212,6 +256,7 @@ const AddProduct = () => {
                     </SelectContent>
                   </Select>
                 </div>
+                {/* Description textarea */}
                 <div className="grid gap-2">
                   <Label className="text-base sm:text-lg font-semibold">
                     Description
@@ -235,6 +280,7 @@ const AddProduct = () => {
                   <Label className="text-base sm:text-lg font-semibold">
                     Product Image
                   </Label>
+                  {/* Placeholder when there is no image */}
                   {imageSrcs.length === 0 ? (
                     <div className="  mt-3 grid grid-cols-1 sm:grid-cols-2 ">
                       <p className="text-gray-500 h-60 flex items-center justify-center text-center bg-gray-200 ">
@@ -254,7 +300,7 @@ const AddProduct = () => {
                           src={imageSrcs[mainImageIndex]}
                           alt={`Uploaded`}
                           fill
-                          objectFit="contain"
+                          style={{ objectFit: "contain" }}
                           className="p-5 border-2 hover:bg-secondary rounded-xl duration-200 "
                         />
                       </div>
@@ -265,6 +311,7 @@ const AddProduct = () => {
                             : "sm:justify-center"
                         } `}
                       >
+                        {/* Button for selecting the image as thumbnail */}
                         <Button
                           className="max-w-60 flex items-center gap-3  "
                           onClick={() =>
@@ -278,7 +325,7 @@ const AddProduct = () => {
                     </div>
                   )}
                 </div>
-                {/* Image Gallery   */}
+                {/* Diplay All Images in grid */}
                 <div>
                   <Label className="text-base sm:text-lg font-semibold">
                     Product Gallery
@@ -290,11 +337,13 @@ const AddProduct = () => {
                         : " grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-4"
                     } grid  gap-5 mt-3 max-h-56 overflow-auto`}
                   >
+                    {/* Placeholder when there is no image */}
                     {imageSrcs.length === 0 ? (
                       <div className="flex justify-center items-center text-center w-full h-40 bg-gray-200">
                         <p className="text-gray-500 ">No images available</p>
                       </div>
                     ) : (
+                      // When you have images display in grid
                       imageSrcs.map((src, index) => (
                         <div
                           className={`relative w-full h-24 cursor-pointer hover:scale-105 duration-100 }`}
@@ -305,14 +354,16 @@ const AddProduct = () => {
                             src={src}
                             alt={`Uploaded ${index}`}
                             fill
-                            objectFit="contain"
+                            style={{ objectFit: "contain" }}
                             className="p-2 border-2 hover:bg-secondary rounded-xl duration-200 "
                           />
+                          {/* When the Image is a thumbnail overlay with camera icon */}
                           {src === thumbnail ? (
                             <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-25 backdrop-filter backdrop-blur-sm">
                               <ImCamera className=" h-full w-2/3 opacity-40 text-gray-300 " />
                             </div>
                           ) : null}
+                          {/* Keep Close X Button for every image */}
                           <button
                             className="absolute top-2 right-2 bg-primary rounded-full p-2 text-white z-10 hover:bg-red-700 hover:text-white"
                             onClick={(e) => {
@@ -326,6 +377,7 @@ const AddProduct = () => {
                       ))
                     )}
                   </div>
+                  {/* Options for uploading Images */}
                   <div
                     className={`${
                       isSidebarOpen
@@ -333,6 +385,7 @@ const AddProduct = () => {
                         : " flex-col sm:flex-row sm:items-center"
                     } flex  py-10 gap-5  mt-5`}
                   >
+                    {/* Add Image by Uploading */}
                     <Button
                       className="flex gap-1 items-center max-w-60  "
                       onClick={handleButtonClick}
@@ -340,6 +393,7 @@ const AddProduct = () => {
                       <IoMdAddCircleOutline className=" text-xl sm:text-2xl" />
                       Add Image
                     </Button>
+                    {/* Add Image by Searching */}
                     <div>
                       <Dialog>
                         <DialogTrigger asChild>
@@ -360,7 +414,7 @@ const AddProduct = () => {
                       </Dialog>
                     </div>
                   </div>
-                  {/* Upload Button */}
+                  {/* Upload Button that is hidden and given reference*/}
                   <input
                     {...register("files")}
                     type="file"
@@ -372,8 +426,7 @@ const AddProduct = () => {
                   />{" "}
                 </div>
 
-                {/* <h1>Open Food Facts Product Search</h1> */}
-
+                {/* Pick Date for Product */}
                 <div>
                   <Label className="text-base sm:text-lg font-semibold">
                     Product Date
@@ -408,6 +461,7 @@ const AddProduct = () => {
                   </div>
                 </div>
 
+                {/* Save Options */}
                 <div
                   className={`${
                     isSidebarOpen
@@ -415,7 +469,9 @@ const AddProduct = () => {
                       : "flex-col sm:flex-row"
                   } flex  gap-5`}
                 >
+                  {/* Final Add Product Button */}
                   <Button type="submit">Add Product</Button>
+                  {/* Save Product Button */}
                   <Button
                     variant={"outline"}
                     className=" hover:border-primary hover:text-primary flex items-center gap-1"
@@ -423,6 +479,7 @@ const AddProduct = () => {
                     <FaRegBookmark className="text-lg sm:text-xl" />
                     Save Product
                   </Button>
+                  {/* Schedule Product Button */}
                   <Button
                     variant={"outline"}
                     className="flex items-center gap-1  hover:border-yellow-600 hover:text-yellow-600"

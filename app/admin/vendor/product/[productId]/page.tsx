@@ -121,7 +121,7 @@ const ProductDetails = ({ params }: PageProps) => {
                   src={product?.images[0].image || "/apple.jpg"}
                   fill
                   alt={product?.name || "Default Product"}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
               </div>
               <div

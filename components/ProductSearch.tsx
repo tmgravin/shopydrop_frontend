@@ -109,7 +109,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({
                     src={product.image_url}
                     alt={product.product_name}
                     fill
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     className="hover:scale-105 transition-all duration-300 p-2 border-2 hover:bg-secondary rounded-xl"
                   />
                 ) : (
@@ -140,7 +140,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({
                   src={product.image_url}
                   alt={product.product_name}
                   fill
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                   className="p-2 border-2 hover:bg-secondary rounded-xl"
                 />
               ) : (
