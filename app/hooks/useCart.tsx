@@ -70,7 +70,7 @@ console.log('cartTotalAmount',cartTotalAmount)
                             ? { ...item, quantity: item.quantity + 1 }
                             : item
                     );
-                    localStorage.setItem('cart', JSON.stringify(updatedCart));
+                    localStorage.setItem('cart', JSON.stringify(updatedCart));s
                     toast.success('Product quantity increased');
                     return updatedCart;
                 } else {
@@ -149,4 +149,3 @@ export const useCart = () => {
     }
     return context;
 };
-

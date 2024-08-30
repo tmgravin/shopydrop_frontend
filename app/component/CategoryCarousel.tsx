@@ -11,8 +11,17 @@ import {
 import Image from "next/image";
 
 import { TiArrowSortedDown } from "react-icons/ti";
+import apiutils from "@/app/utils/apiutils";
+
 
 const getRandomImage = () => {
+  apiutils.get("/api/lookup/category/category")
+  .then((response) =>
+  {
+    response.data
+    console.log("data",response)
+    
+  })
   // Placeholder image service URL (for demo purposes)
   return `https://via.placeholder.com/600x400.png?text=Product${Math.floor(
     Math.random() * 100
@@ -23,6 +32,7 @@ export function CategoryCarousel() {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    
     const interval = setInterval(() => {
       if (carouselRef.current) {
         const carousel = carouselRef.current as unknown as { next: () => void };

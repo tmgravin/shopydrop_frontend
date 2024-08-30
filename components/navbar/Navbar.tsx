@@ -16,7 +16,7 @@ import { getCookie, deleteCookie } from "@/app/utils/cookies";
 import { Dialog } from "@/components/ui/dialog";
 import CartCount from "./CartCount";
 import CartProvider from "@/app/providers/CartProvider";
-import { axiosInstance } from "@/app/utils/api";
+// import { axiosInstance } from "@/app/utils/api";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
@@ -25,6 +25,7 @@ const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
+  const [iCartSidebarOpen, setCartIsSidebarOpen] = useState(false);
   const token = typeof window !=="undefined" ? sessionStorage.getItem("token") : undefined;
 
   useEffect(() => {
@@ -40,14 +41,14 @@ const Navbar = () => {
   const handleLogout = async () => {
     setIsLoggedIn(false);
     try {
-      const response = await axiosInstance.post("security/logout");
-      if (response.status === 200) {
-        deleteCookie("token");
-        deleteCookie("user");
-        console.log("Logout successful");
-      } else {
-        console.log("Logout failed");
-      }
+      // const response = await axiosInstance.post("security/logout");
+      // if (response.status === 200) {
+      //   deleteCookie("token");
+      //   deleteCookie("user");
+      //   console.log("Logout successful");
+      // } else {
+      //   console.log("Logout failed");
+      // }
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -115,7 +116,7 @@ const Navbar = () => {
                       </div>
                     </div>
                     <CartProvider>
-                      <CartCount />
+                      <CartCount onClick={() => setIsCartSidebarOpen(!isCartSidebarOpen)}   />
                     </CartProvider>
                     <div className="flex items-center gap-2">
                       <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">

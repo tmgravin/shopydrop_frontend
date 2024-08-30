@@ -65,7 +65,6 @@ const UserNavbar = ({ toggleSidebar }: UserNavbarProps) => {
                       <Image
                         src={pic}
                         alt="User Photo"
-                        fill
                         className="rounded-full"
                         width={100}
                         height={100}

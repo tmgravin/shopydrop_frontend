@@ -178,4 +178,255 @@ export const products = [
     ],
     reviews: [],
   },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
+
+  {
+    id: "649d775128b6744f0f497040",
+    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
+    description:
+      'Bluetooth et up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
+    price: 50,
+    brand: "Nerunsa",
+    category: "Watch",
+    inStock: true,
+    images: [
+      {
+        color: "Black",
+        colorCode: "#000000",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+      {
+        color: "Silver",
+        colorCode: "#C0C0C0",
+        image:
+          "https://www.merokirana.com/archive/KiranaProduct/ee99bb4531174afaa4fe738b197c03e3.jpg",
+      },
+    ],
+    reviews: [],
+  },
 ];

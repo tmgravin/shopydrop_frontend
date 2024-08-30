@@ -1,4 +1,3 @@
-// src/components/VendorStore/VendorStore.tsx
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { products } from '@/app/utils/products';
@@ -13,7 +12,7 @@ const VendorStore = () => {
     switch (selectedContent) {
       case 'Shop':
         return (
-          <div>
+          <div className="h-36">
             <Image
               src="https://img.freepik.com/free-photo/mexican-dishes-pepper_23-2147740824.jpg"
               alt=""
@@ -42,9 +41,9 @@ const VendorStore = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-screen bg-gray-50">
+    <div className="flex flex-col lg:flex-row w-full h-auto min-h-screen bg-gray-50">
       <VendorSidebar selectedContent={selectedContent} onContentSelect={setSelectedContent} />
-      <div className="w-full lg:w-[80%] p-6 lg:pl-8 overflow-y-auto lg:h-screen">
+      <div className="w-full lg:w-[80%] p-6 lg:pl-8 overflow-y-auto lg:h-auto">
         {renderContent()}
       </div>
     </div>
