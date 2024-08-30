@@ -15,6 +15,7 @@ import { FaEnvelope, FaLock, FaFacebook, FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { setCookie } from "@/app/utils/cookies"; // Utility function for setting cookies
+import { axiosInstance } from "@/app/utils/apiutils";
 // import { axiosInstance } from "@/app/utils/api";
 
 interface LoginProps {
@@ -32,27 +33,27 @@ const Login : React.FC<LoginProps>= ({ onClosed,isOpen }) => {
     e.preventDefault();
 
     try {
-      // axiosInstance.post('security/login', { email, password }, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   // withCredentials: true
-      // }).then((response) => {
-      //   console.log('response for data is',response);
-      //   sessionStorage.setItem("token", response.data.jwtToken);
-      //   console.log("token ", sessionStorage.getItem("token"));
-      //   if (response.data.user.userType === "USER") {
-      //     setCookie("token", response.data.jwtToken, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
-      //   } else if (response.data.user.userType === "VENDOR") {
-      //     setCookie("token", response.data.jwtToken, { path: "/dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
-      //   } else if (response.data.user.userType === "ADMIN") {
-      //     setCookie("token", response.data.jwtToken, { path: "/admin-dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
-      //   }
-      //   setCookie("user", response.data.user, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
-      //   onClosed!();
-      //   router.push("/");
-      //   window.location.reload();
-      // })
+      axiosInstance.post('/api/security/login', { email, password }, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // withCredentials: true
+      }).then((response) => {
+        console.log('response for data is',response);
+        sessionStorage.setItem("token", response.data.jwtToken);
+        console.log("token ", sessionStorage.getItem("token"));
+        if (response.data.user.userType === "USER") {
+          setCookie("token", response.data.jwtToken, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
+        } else if (response.data.user.userType === "VENDOR") {
+          setCookie("token", response.data.jwtToken, { path: "/dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
+        } else if (response.data.user.userType === "ADMIN") {
+          setCookie("token", response.data.jwtToken, { path: "/admin-dashboard", secure: true, httpOnly: true, sameSite: "Strict" });
+        }
+        setCookie("user", response.data.user, { path: "/", secure: true, httpOnly: true, sameSite: "Strict" });
+        onClosed!();
+        router.push("/");
+        window.location.reload();
+      })
     } catch (error) {
       console.error("Error logging in:", error);
       toast.error("Login failed");

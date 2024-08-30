@@ -20,6 +20,6 @@ export const getCookie = (name: string): string | null => {
 
 if (typeof window !== 'undefined') {
   // This code will only run in the browser
-  const token = getCookie('token');
+  const token = sessionStorage.getItem("token");
   console.log('Retrieved Token:', token);
 }

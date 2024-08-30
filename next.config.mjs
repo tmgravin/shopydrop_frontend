@@ -8,7 +8,8 @@ const hostnames = [
     'upload.wikimedia.org',
     'img.freepik.com',
     'blog.esewa.com.np',
-    'png.pngtree.com',
+    'm.media-amazon.com',
+
 
 
 
@@ -26,6 +27,7 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,  // Note: Ignoring TypeScript build errors can hide important issues
     },
+
 };
 
 export default nextConfig;

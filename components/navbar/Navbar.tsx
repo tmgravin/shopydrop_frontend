@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -17,18 +19,14 @@ import CartProvider from "@/app/providers/CartProvider";
 // import { axiosInstance } from "@/app/utils/api";
 import { useRouter } from "next/navigation";
 
-interface NavbarProps {
-  onClose: () => void;
-}
-
 const Navbar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
-  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
-  const token = typeof window !== "undefined" ? sessionStorage.getItem("token") : undefined;
+  const [iCartSidebarOpen, setCartIsSidebarOpen] = useState(false);
+  const token = typeof window !=="undefined" ? sessionStorage.getItem("token") : undefined;
 
   useEffect(() => {
     setIsLoggedIn(!!token);
@@ -38,7 +36,7 @@ const Navbar = () => {
   const handleSignUpOpen = () => setIsSignUpOpen(true);
   const handleLoginClose = () => setIsLoginOpen(false);
   const handleSignUpClose = () => setIsSignUpOpen(false);
-  const handleSidebarToggle = () => setIsSidebarOpen((prev) => !prev);
+  const handleSidebarToggle = () => setIsSidebarOpen(prev => !prev);
 
   const handleLogout = async () => {
     setIsLoggedIn(false);
@@ -118,7 +116,7 @@ const Navbar = () => {
                       </div>
                     </div>
                     <CartProvider>
-                      <CartCount onClick={() => setIsCartSidebarOpen(!isCartSidebarOpen)} />
+                      <CartCount   />
                     </CartProvider>
                     <div className="flex items-center gap-2">
                       <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">
@@ -157,7 +155,7 @@ const Navbar = () => {
         </div>
       )}
 
-      {isLoginOpen && <Login isOpen={isLoginOpen} onClose={handleLoginClose} />}
+      {isLoginOpen && <Login isOpen={isLoginOpen} onClosed={handleLoginClose} />}
       {isSignUpOpen && <Register isOpen={isSignUpOpen} onClose={handleSignUpClose} />}
     </div>
   );
