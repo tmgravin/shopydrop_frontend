@@ -1,10 +1,12 @@
 import React from "react";
-import { useCart } from "../../contexts/CartContext";
 import CartProductItem from "./CartProductItem";
-import CheckoutButton from "./CheckoutButton";
+import CheckoutButton from "./CheckOutButton";
+import { product } from "@/app/utils/product";
+import { useCart } from "@/app/hooks/useCart";
+
 
 const CartSidebar: React.FC = () => {
-    const { cartProducts, cartTotalAmount } = useCart();
+    const { cartProducts, CartTotalAmount } = useCart();
 
     return (
         <div className="fixed top-0 left-0 h-full w-1/3 bg-white shadow-lg p-4">
@@ -13,7 +15,7 @@ const CartSidebar: React.FC = () => {
                 <CartProductItem key={product.id} product={product} />
             ))}
             <div className="mt-4">
-                <p className="text-lg font-semibold">Total: ${cartTotalAmount}</p>
+                <p className="text-lg font-semibold">Total: ${CartTotalAmount}</p>
                 <CheckoutButton />
             </div>
         </div>

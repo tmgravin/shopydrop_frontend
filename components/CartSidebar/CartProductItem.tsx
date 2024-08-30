@@ -1,6 +1,7 @@
+import { useCart } from "@/app/hooks/useCart";
+import { cartProductType } from "@/app/product/[productid]/productDetails";
 import React from "react";
-import { cartProductType } from "../../utils/types";
-import { useCart } from "../../contexts/CartContext";
+
 
 type CartProductItemProps = {
     product: cartProductType;
