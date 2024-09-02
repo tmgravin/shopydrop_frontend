@@ -167,4 +167,28 @@ main {
 
 
 /*  From here VendorStore scroll end here   */
+.carouselContent {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.carouselItem {
+  flex-basis: 100%;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .carouselItem {
+    flex-basis: calc(50% - 16px); /* Two cards on small screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .carouselItem {
+    flex-basis: calc(25% - 16px); /* Four cards on larger screens */
+  }
+}
+
 

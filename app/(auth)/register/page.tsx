@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -15,48 +14,59 @@ import { IoLocationSharp } from "react-icons/io5";
 import { CiMobile2 } from "react-icons/ci";
 import axios from "axios";
 
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
 interface SignupProps {
   onClose: () => void;
-  isOpen:boolean;
+  isOpen: boolean;
 }
 
 interface FormData {
-  username: string;
+  name: string;
   address: string;
   phone: string;
   email: string;
   password: string;
+  terms: boolean; // Add terms field to the form data
 }
 
-const Register = ({ onClose,isOpen }: SignupProps) => {
+const Register = ({ onClose, isOpen }: SignupProps) => {
   const [data, setData] = useState<FormData>({
-    username: "",
+    name: "",
     address: "",
     phone: "",
     email: "",
     password: "",
+    terms: false, // Initialize terms as false
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission
+    if (!data.terms) {
+      setErrorMessage("You must accept the terms and privacy policy.");
+      return;
+    }
+    setErrorMessage(""); // Clear any previous error messages
+
     try {
-      const res = await axios.post("http://192.168.1.71:8080/api/users/", data);
+      const res = await axios.post(`${baseURL}/api/auth/signup`, data);
       console.log(res);
+      // Optionally close the dialog or reset the form after successful registration
+      onClose();
     } catch (error) {
       console.error("Error during registration:", error);
+      setErrorMessage("Registration failed. Please try again."); // Set error message
     }
   };
-
-
-  
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -65,14 +75,16 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
           <DialogTitle>Sign Up</DialogTitle>
         </DialogHeader>
         <form onSubmit={onSubmit} className="flex flex-col gap-y-8 py-4">
+          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           <div className="relative">
             <Input
               type="text"
-              name="Name"
-              placeholder="name"
+              name="name"
+              placeholder="Username"
               className="pr-10"
-              value={data.username}
+              value={data.name}
               onChange={handleChange}
+              required
             />
             <FaUser className="absolute right-3 top-3 text-gray-400" />
           </div>
@@ -84,17 +96,19 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
               className="pr-10"
               value={data.address}
               onChange={handleChange}
+              required
             />
             <IoLocationSharp className="absolute right-3 top-3 text-gray-400" />
           </div>
           <div className="relative">
             <Input
-              type="number"
+              type="tel" // Change to tel for better UX on mobile
               name="phone"
               placeholder="Phone Number"
               className="pr-10"
               value={data.phone}
               onChange={handleChange}
+              required
             />
             <CiMobile2 className="absolute right-3 top-3 text-gray-400" />
           </div>
@@ -106,6 +120,7 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
               name="email"
               value={data.email}
               onChange={handleChange}
+              required
             />
             <FaEnvelope className="absolute right-3 top-3 text-gray-400" />
           </div>
@@ -117,11 +132,19 @@ const Register = ({ onClose,isOpen }: SignupProps) => {
               name="password"
               value={data.password}
               onChange={handleChange}
+              required
             />
             <FaLock className="absolute right-3 top-3 text-gray-400" />
           </div>
           <div className="flex gap-1 items-center">
-            <Input type="checkbox" className="w-8 h-4" name="terms" required />
+            <Input
+              type="checkbox"
+              className="w-8 h-4"
+              name="terms"
+              checked={data.terms}
+              onChange={handleChange}
+              required
+            />
             <p>I have read and accept the</p>
             <Link href="/terms" className="text-green-600">
               Terms and Privacy Policy
