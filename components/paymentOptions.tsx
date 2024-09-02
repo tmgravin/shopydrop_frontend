@@ -1,51 +1,4 @@
-// "use client"; // Ensure this is correctly cased
-
-// import React, { useState } from 'react';
-// import { Button } from './ui/button';
-
-// interface PaymentOptionsProps {
-//   onOnlinePaymentClick: () => void;
-//   onPartialPaymentClick: () => void;
-// }
-
-// const PaymentOptions: React.FC<PaymentOptionsProps> = ({ onOnlinePaymentClick, onPartialPaymentClick }) => {
-//   const [selectedOption, setSelectedOption] = useState('Credit Card');
-
-//   return (
-//     <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-//       <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Choose Payment Method</h2>
-      
-//       <div className="space-y-4">
-//         <button 
-//           onClick={onOnlinePaymentClick} 
-//           className="w-full py-3 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-200 ease-in-out">
-//           Online Payment
-//         </button>
-        
-//         <button 
-//           onClick={onPartialPaymentClick} 
-//           className="w-full py-3 px-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-all duration-200 ease-in-out">
-//           Partial Payment
-//         </button>
-
-//         <button 
-//           className="w-full py-3 px-6 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all duration-200 ease-in-out">
-//           Cash on Delivery
-//         </button>
-//       </div>
-      
-//       <div className="flex justify-center mt-6">
-//         <Button className="w-full md:w-auto py-3 px-6 bg-blue-700 hover:bg-blue-800 text-white rounded-lg transition-all duration-200 ease-in-out">
-//           Proceed To Delivery
-//         </Button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PaymentOptions;
-
-"use client"; // Ensure this is correctly cased
+"use client";
 
 import React, { useState } from 'react';
 import { Button } from './ui/button';
@@ -124,4 +77,3 @@ const PaymentOptions: React.FC<PaymentOptionsProps> = ({ onOnlinePaymentClick, o
 };
 
 export default PaymentOptions;
-

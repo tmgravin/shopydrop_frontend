@@ -9,6 +9,8 @@ const hostnames = [
     'img.freepik.com',
     'blog.esewa.com.np',
     'm.media-amazon.com',
+    'images.unsplash.com',
+
 
 
 

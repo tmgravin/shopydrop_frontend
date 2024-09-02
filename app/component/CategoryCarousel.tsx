@@ -133,7 +133,7 @@ export function CategoryCarousel() {
             <Card className="bg-transparent border-none shadow-none">
               <CardContent className="flex  text-black aspect-square items-center justify-center p-0 shadow-none">
                 <Image
-                  src=""
+                src="https://via.placeholder.com/600x400.png?text=Category"
                   width={80}
                   height={80}
                   alt={`Category ${category.categoryName}`}

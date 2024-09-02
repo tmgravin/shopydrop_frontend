@@ -57,10 +57,14 @@ const CheckoutPage = () => {
 
       {/* Modal for Payment QR Code */}
       <Dialog open={isModalOpen} onOpenChange={closeModal}>
-        <DialogContent>
-          <DialogTitle>{selectedPaymentMethod}</DialogTitle>
-          <div className="flex flex-col items-center">
-            <p className="mb-4">Scan the QR code to complete the payment</p>
+        <DialogContent className="max-w-xs sm:max-w-md md:max-w-lg">
+          <DialogTitle className="text-center text-lg sm:text-xl md:text-2xl font-semibold">
+            {selectedPaymentMethod}
+          </DialogTitle>
+          <div className="flex flex-col items-center p-4 sm:p-6">
+            <p className="mb-4 text-center text-sm sm:text-base md:text-lg">
+              Scan the QR code to complete the payment
+            </p>
             <Image
               src="https://blog.esewa.com.np/wp-content/uploads/2019/09/QR-blog-02.png" // Replace with your QR code image path
               alt="Payment QR Code"
@@ -68,7 +72,12 @@ const CheckoutPage = () => {
               height={200}
               className="mb-4"
             />
-            <Button onClick={closeModal}>Close</Button>
+            <Button 
+              onClick={closeModal}
+              className="w-full sm:w-auto py-2 sm:py-3 px-4 sm:px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition-transform transform hover:scale-105"
+            >
+              Close
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

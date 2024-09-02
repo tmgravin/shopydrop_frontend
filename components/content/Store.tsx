@@ -24,7 +24,6 @@ export function Store() {
   const [vendor, setVendor] = useState<any[]>([]); 
   const router = useRouter();
 
-
   const fetchUsers = async () => {
     try {
       const token = sessionStorage.getItem("token");
@@ -33,23 +32,22 @@ export function Store() {
         console.error("No token found. Please log in first.");
         return;
       }
-      // Fetch users from the API
       const res = await axios.get(`${baseURL}/api/auth/users/`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Ensure token is defined and valid
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
-      setVendor(res.data); // Set the fetched users to state
-      console.log("Fetched users:", res.data); // Log the fetched data
+      setVendor(res.data);
+      console.log("Fetched users:", res.data); 
     } catch (err) {
-      console.error("Error fetching users:", err); // Handle any errors
+      console.error("Error fetching users:", err); 
     }
   };
   
   useEffect(() => {
-    fetchUsers(); // Call the fetchUsers function when the component mounts
-  }, []); // Empty dependency array to run only on mount
+    fetchUsers(); 
+  }, []); 
   
 
   const handleCardClick = () => {
@@ -59,7 +57,7 @@ export function Store() {
   return (
     <Carousel className="w-full shadow-none gap-0 mt-8">
       <CarouselContent className="w-full -ml-1 shadow-none gap-0">
-        {vendor.map((item, index) => ( // Replace dummy data with fetched vendor data
+        {vendor.map((item, index) => (
           <CarouselItem
             key={index}
             className="pl-1 basis-1/4 md:basis-1/12 lg:basis-1/16"
@@ -73,13 +71,13 @@ export function Store() {
                   <Image
                     src={getRandomImage()}
                     alt={`Product ${index + 1}`}
-                    width={600}  // Using the fixed width from the placeholder image
-                    height={400} // Using the fixed height from the placeholder image
+                    width={600}
+                    height={400}
                     className="h-20 w-20 rounded-full"
                   />
                 </CardContent>
                 <div className="flex items-center text-center justify-end">
-                  <p className="text-center text-sm mx-auto">{vendor.name}</p>
+                  <p className="text-center text-sm mx-auto">{item.name}</p>
                 </div>
               </Card>
             </div>

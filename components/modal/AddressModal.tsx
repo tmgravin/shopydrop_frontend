@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'; // shadcn dialog component
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'; // shadcn dialog component
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Image from "next/image";
 
 interface AddressModalProps {
   isOpen: boolean;
@@ -23,42 +22,47 @@ const AddressModal: React.FC<AddressModalProps> = ({ isOpen, onClose, onSave, in
     onSave({ name, phone, email, address });
     onClose();
   };
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="p-4 sm:p-6 bg-white rounded-lg shadow-lg max-w-sm sm:max-w-md mx-auto">
         <DialogHeader>
-          <DialogTitle>{initialData ? 'Edit Address' : 'Add New Address'}</DialogTitle>
+          <DialogTitle className="text-lg sm:text-xl font-semibold text-gray-800">
+            {initialData ? 'Edit Address' : 'Add New Address'}
+          </DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
+        <div className="space-y-4 mt-4">
           <Input 
             placeholder="Name" 
             value={name} 
             onChange={(e) => setName(e.target.value)} 
-            className="w-full" 
+            className="w-full p-2 border border-gray-300 rounded-md" 
           />
           <Input 
             placeholder="Phone" 
             value={phone} 
             onChange={(e) => setPhone(e.target.value)} 
-            className="w-full" 
+            className="w-full p-2 border border-gray-300 rounded-md" 
           />
           <Input 
             placeholder="Email" 
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
-            className="w-full" 
+            className="w-full p-2 border border-gray-300 rounded-md" 
           />
           <Input 
             placeholder="Address" 
             value={address} 
             onChange={(e) => setAddress(e.target.value)} 
-            className="w-full" 
+            className="w-full p-2 border border-gray-300 rounded-md" 
           />
         </div>
-        <div className="flex justify-end space-x-2 mt-4">
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={handleSave}>Save</Button>
+        <div className="flex justify-end space-x-2 mt-6">
+          <Button variant="outline" onClick={onClose} className="flex-1 sm:flex-none">
+            Cancel
+          </Button>
+          <Button onClick={handleSave} className="flex-1 sm:flex-none">
+            Save
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
