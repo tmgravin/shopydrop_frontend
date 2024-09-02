@@ -13,14 +13,13 @@
 // import { TiArrowSortedDown } from "react-icons/ti";
 // import apiutils from "@/app/utils/apiutils";
 
-
 // const getRandomImage = () => {
 //   apiutils.get("/api/lookup/category/category")
 //   .then((response) =>
 //   {
 //     response.data
 //     console.log("data",response)
-    
+
 //   })
 //   // Placeholder image service URL (for demo purposes)
 //   return `https://via.placeholder.com/600x400.png?text=Product${Math.floor(
@@ -32,7 +31,7 @@
 //   const carouselRef = useRef<HTMLDivElement>(null);
 
 //   useEffect(() => {
-    
+
 //     const interval = setInterval(() => {
 //       if (carouselRef.current) {
 //         const carousel = carouselRef.current as unknown as { next: () => void };
@@ -89,9 +88,10 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { TiArrowSortedDown } from "react-icons/ti";
-import axios from "axios";// import baseURL from "@app/utils/apiutils";
+import axios from "axios"; // import baseURL from "@app/utils/apiutils";
+import Autoplay from "embla-carousel-autoplay";
 
-const baseURL =process.env.NEXT_PUBLIC_BASE_URL
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export function CategoryCarousel() {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -99,7 +99,8 @@ export function CategoryCarousel() {
 
   useEffect(() => {
     // Fetch categories from the API
-    axios.get(`${baseURL}/api/lookup/category/category`)
+    axios
+      .get(`${baseURL}/api/lookup/category/category`)
       .then((response) => {
         console.log("Fetched categories:", response.data); // Log the fetched data
         setCategories(response.data); // Set the fetched categories to state
@@ -110,20 +111,18 @@ export function CategoryCarousel() {
 
     const interval = setInterval(() => {
       if (carouselRef.current) {
-        const carousel = carouselRef.current as unknown as { next: () => void };
       }
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval); // Clean up interval on component unmount
   }, []);
 
-  // Placeholder image service URL (for demo purposes)
-  const getRandomImage = (index: number) => {
-    return `https://via.placeholder.com/600x400.png?text=Product${index}`;
-  };
-
   return (
-    <Carousel ref={carouselRef} className="w-full shadow-none gap-0">
+    <Carousel
+      plugins={[Autoplay({ delay: 5000 })]}
+      options={{ loop: true }} // Corrected 'opts' to 'options'
+      className="w-full shadow-none gap-0"
+    >
       <CarouselContent className="w-full flex gap-2">
         {categories.map((category, index) => (
           <CarouselItem
@@ -133,7 +132,7 @@ export function CategoryCarousel() {
             <Card className="bg-transparent border-none shadow-none">
               <CardContent className="flex  text-black aspect-square items-center justify-center p-0 shadow-none">
                 <Image
-                  src=""
+                  src={category?.categoryImage}
                   width={80}
                   height={80}
                   alt={`Category ${category.categoryName}`}
