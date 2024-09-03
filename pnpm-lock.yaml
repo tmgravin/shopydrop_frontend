@@ -20,6 +20,9 @@ importers:
       '@mui/material':
         specifier: ^5.16.6
         version: 5.16.7(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@next/font':
+        specifier: ^14.2.5
+        version: 14.2.7(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@radix-ui/react-accordion':
         specifier: ^1.2.0
         version: 1.2.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -131,6 +134,9 @@ importers:
       cmdk:
         specifier: ^1.0.0
         version: 1.0.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      cookie:
+        specifier: ^0.6.0
+        version: 0.6.0
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
@@ -139,10 +145,10 @@ importers:
         version: 16.4.5
       embla-carousel-autoplay:
         specifier: ^8.2.0
-        version: 8.2.0(embla-carousel@8.1.8)
+        version: 8.2.0(embla-carousel@8.2.0)
       embla-carousel-react:
         specifier: ^8.1.7
-        version: 8.1.8(react@18.3.1)
+        version: 8.2.0(react@18.3.1)
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -195,7 +201,7 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       swiper:
-        specifier: ^11.1.11
+        specifier: ^11.1.9
         version: 11.1.11
       tailwind-merge:
         specifier: ^2.4.0
@@ -621,6 +627,11 @@ packages:
 
   '@next/eslint-plugin-next@14.2.4':
     resolution: {integrity: sha512-svSFxW9f3xDaZA3idQmlFw7SusOuWTpDTAeBlO3AEPDltrraV+lqs7mAc6A27YdnpQVVIA3sODqUAAHdWhVWsA==}
+
+  '@next/font@14.2.7':
+    resolution: {integrity: sha512-0WvqMw4Ynwtj5ftyKmnpVH3tam5U/hg0D9EPdbMlv1hvoeSyAK+kkxQkCSEH8G2Jgt5/lTk6FLdqZ+5gnw+0aw==}
+    peerDependencies:
+      next: '*'
 
   '@next/swc-darwin-arm64@14.2.4':
     resolution: {integrity: sha512-AH3mO4JlFUqsYcwFUHb1wAKlebHU/Hv2u2kb1pAuRanDZ7pD/A/KPD98RHZmwsJpdHQwfEc/06mgpSzwrJYnNg==}
@@ -1875,6 +1886,10 @@ packages:
   convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
 
+  cookie@0.6.0:
+    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
+    engines: {node: '>= 0.6'}
+
   cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
     engines: {node: '>=10'}
@@ -2034,18 +2049,18 @@ packages:
     peerDependencies:
       embla-carousel: 8.2.0
 
-  embla-carousel-react@8.1.8:
-    resolution: {integrity: sha512-b8DcmC+j1vqVWSM6rU/GYGyY6Kp9LX8OoikZPBKmV6qL8s94sSPGl6jtDLLUtV8TTIQGMYOlOKUgoMAt/0TwOQ==}
+  embla-carousel-react@8.2.0:
+    resolution: {integrity: sha512-dWqbmaEBQjeAcy/EKrcAX37beVr0ubXuHPuLZkx27z58V1FIvRbbMb4/c3cLZx0PAv/ofngX2QFrwUB+62SPnw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.1 || ^18.0.0
 
-  embla-carousel-reactive-utils@8.1.8:
-    resolution: {integrity: sha512-bwV/23WD3Ecm0YuQ4I6Syzs3tdVJw0Oj3VCZlEODv1kH8LZ5kNDLgX2Uvx5brvoe2hpifBHPBQ8gYlxNL5kMPA==}
+  embla-carousel-reactive-utils@8.2.0:
+    resolution: {integrity: sha512-ZdaPNgMydkPBiDRUv+wRIz3hpZJ3LKrTyz+XWi286qlwPyZFJDjbzPBiXnC3czF9N/nsabSc7LTRvGauUzwKEg==}
     peerDependencies:
-      embla-carousel: 8.1.8
+      embla-carousel: 8.2.0
 
-  embla-carousel@8.1.8:
-    resolution: {integrity: sha512-KuHPA8qcAts6YE6ELtt38XYAb26hnKw8Ga0lSXmrhm1oI97t6oACFkqSsy33dfeZQEhaZB6VwWvaWQJRJVgSgA==}
+  embla-carousel@8.2.0:
+    resolution: {integrity: sha512-rf2GIX8rab9E6ZZN0Uhz05746qu2KrDje9IfFyHzjwxLwhvGjUt6y9+uaY1Sf+B0OPSa3sgas7BE2hWZCtopTA==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3848,6 +3863,10 @@ snapshots:
     dependencies:
       glob: 10.3.10
 
+  '@next/font@14.2.7(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+    dependencies:
+      next: 14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
   '@next/swc-darwin-arm64@14.2.4':
     optional: true
 
@@ -5123,6 +5142,8 @@ snapshots:
 
   convert-source-map@1.9.0: {}
 
+  cookie@0.6.0: {}
+
   cosmiconfig@7.1.0:
     dependencies:
       '@types/parse-json': 4.0.2
@@ -5279,21 +5300,21 @@ snapshots:
 
   electron-to-chromium@1.5.8: {}
 
-  embla-carousel-autoplay@8.2.0(embla-carousel@8.1.8):
+  embla-carousel-autoplay@8.2.0(embla-carousel@8.2.0):
     dependencies:
-      embla-carousel: 8.1.8
+      embla-carousel: 8.2.0
 
-  embla-carousel-react@8.1.8(react@18.3.1):
+  embla-carousel-react@8.2.0(react@18.3.1):
     dependencies:
-      embla-carousel: 8.1.8
-      embla-carousel-reactive-utils: 8.1.8(embla-carousel@8.1.8)
+      embla-carousel: 8.2.0
+      embla-carousel-reactive-utils: 8.2.0(embla-carousel@8.2.0)
       react: 18.3.1
 
-  embla-carousel-reactive-utils@8.1.8(embla-carousel@8.1.8):
+  embla-carousel-reactive-utils@8.2.0(embla-carousel@8.2.0):
     dependencies:
-      embla-carousel: 8.1.8
+      embla-carousel: 8.2.0
 
-  embla-carousel@8.1.8: {}
+  embla-carousel@8.2.0: {}
 
   emoji-regex@8.0.0: {}
 

@@ -20,6 +20,8 @@ const nextConfig = {
       pathname: "/**", // Allows any path on the hostname
       // port can be omitted if empty, default ports are used
     })),
+    domains: ['m.media-amazon.com','images.openfoodfacts.org']
+
   },
   typescript: {
     ignoreBuildErrors: true, // Note: Ignoring TypeScript build errors can hide important issues

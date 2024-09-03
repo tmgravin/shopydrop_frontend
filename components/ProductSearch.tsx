@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { convertUrlToFile } from "@/app/utils/urlToFile";
 
 interface Product {
   code: string;
@@ -17,17 +18,50 @@ interface Product {
 interface ProductSearchProps {
   imageSrcs: string[];
   setImageSrcs: React.Dispatch<React.SetStateAction<string[]>>;
+  searchedImages: File[];
+  setSearchedImages: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
 const ProductSearch: React.FC<ProductSearchProps> = ({
   imageSrcs,
   setImageSrcs,
+  searchedImages,
+  setSearchedImages,
 }) => {
   const [query, setQuery] = useState<string>("");
   const [products, setProducts] = useState<Product[]>([]);
   const [savedProducts, setSavedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleUpload = async () => {
+    setImageSrcs([
+      ...imageSrcs,
+      ...savedProducts.map((product) => product.image_url || ""),
+    ]);
+
+    console.log(savedProducts);
+
+    const files: File[] = [];
+    for (const product of savedProducts) {
+      if (product.image_url) {
+        try {
+          const file = await convertUrlToFile({
+            url: product.image_url,
+            filename: product.product_name,
+          });
+          files.push(file);
+        } catch (error) {
+          console.log("Error converting image to file", error);
+        }
+      }
+    }
+    setSearchedImages((prevImages) => {
+      const updatedImages = [...prevImages, ...files];
+      console.log("Updated Searched Images:", updatedImages);
+      return updatedImages;
+    });
+  };
 
   const handleSearch = async () => {
     setLoading(true);
@@ -164,15 +198,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({
       </ul>
       <div className="flex justify-end pt-4">
         <DialogPrimitive.Close>
-          <Button
-            className="w-24"
-            onClick={() =>
-              setImageSrcs([
-                ...imageSrcs,
-                ...savedProducts.map((product) => product.image_url || ""),
-              ])
-            }
-          >
+          <Button className="w-24" onClick={handleUpload}>
             Upload
           </Button>
         </DialogPrimitive.Close>
