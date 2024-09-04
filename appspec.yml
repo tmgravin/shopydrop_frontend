@@ -15,19 +15,19 @@ hooks:
   ApplicationStop:
     - location: scripts/stop_server.sh
       timeout: 300
-#      runas: root
+      runas: ec2-user
 
   BeforeInstall:
     - location: scripts/before_install.sh
       timeout: 300
-#      runas: root
+      runas: ec2-user
   
   AfterInstall:
     - location: scripts/after_install.sh
       timeout: 300
-#      runas: root
+      runas: ec2-user
 
   ApplicationStart:
     - location: scripts/start_server.sh
       timeout: 300
-#      runas: root
+      runas: ec2-user
