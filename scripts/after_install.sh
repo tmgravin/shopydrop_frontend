@@ -1,8 +1,6 @@
 #!/bin/bash
-
-# Navigate to the correct directory
 cd /home/ec2-user/next
-sudo su
-# Install dependencies
-npm install
-npm run build
+sudo rm -rf node_modules
+sudo rm -rf package-lock.json
+sudo npm install
+sudo npm run build
